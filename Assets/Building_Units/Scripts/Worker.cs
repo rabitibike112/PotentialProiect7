@@ -5,7 +5,7 @@ using UnityEngine;
 public class Worker : MonoBehaviour
 {
     private bool IsWorking = false;
-    private float MoveSpeed = 5f;
+    private float MoveSpeed;
     private WaitForSeconds TryGetWorkDelay = new WaitForSeconds(2f);
     private BuildQueue BuildQueueScpt;
     private GameObject WorkObj;
@@ -15,6 +15,7 @@ public class Worker : MonoBehaviour
 
     void Start()
     {
+        MoveSpeed = Random.Range(4f, 6f);
         BuildQueueScpt = GameObject.Find("BuildQueueManager").GetComponent<BuildQueue>();
         Stockpile = GameObject.Find("Stockpile").gameObject;
         StartCoroutine(SeekWork());
@@ -54,7 +55,7 @@ public class Worker : MonoBehaviour
             }
             else
             {
-                BuildQueueScpt.RemoveTopFromQueue();
+                //BuildQueueScpt.RemoveTopFromQueue();
                 IsWorking = false;
             }
         }
