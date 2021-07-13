@@ -13,10 +13,16 @@ public class ToBuild : MonoBehaviour
 
     void Start()
     {
+        Work TempA = GameObject.Find("WorkManager").GetComponent<Work>();
+        for(int i =0;i< MatNeeded; i++)
+        {
+            TempA.AddTaskQueue(1, this.gameObject);
+        }
+
         BuildMat = transform.GetComponent<Renderer>().material;
-        Color tempA = BuildMat.color;
-        tempA.a = 0.1f;
-        BuildMat.color = tempA;
+        Color tempB = BuildMat.color;
+        tempB.a = 0.1f;
+        BuildMat.color = tempB;
     }
 
     void Update()
@@ -24,20 +30,7 @@ public class ToBuild : MonoBehaviour
         if(MatHave >= MatNeeded)
         {
             transform.GetComponent<Renderer>().material = FinishedMat;
-            GameObject.Find("BuildQueueManager").GetComponent<BuildQueue>().RemoveTopFromQueue();
             Destroy(this.GetComponent<ToBuild>());
-        }
-    }
-
-    public bool NeedMat()
-    {
-        if(MatNeeded > MatHave)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 
