@@ -17,4 +17,16 @@ public class Stockpile : MonoBehaviour
     {
         Materials += 1;
     }
+
+    public bool HasMat()
+    {
+        if(Materials > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
